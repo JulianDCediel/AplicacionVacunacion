@@ -92,6 +92,7 @@ public class DAO_Paciente extends Conexion {
     }
 
     public boolean eliminar(DTO_Paciente paciente) {
+        eliminarVacunacion(paciente);
         PreparedStatement pst;
         String stm = "DELETE FROM paciente WHERE Documento_Paciente = ?";
 
@@ -106,6 +107,20 @@ public class DAO_Paciente extends Conexion {
         }
     }
 
+        public boolean eliminarVacunacion(DTO_Paciente paciente) {
+        PreparedStatement pst;
+        String stm = "DELETE FROM vacunacion WHERE Paciente_idPaciente = ?";
+
+        try {
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, paciente.getDocumento());
+            pst.execute();
+            return true;
+        } catch (SQLException ex) {
+            mensaje("No se pudo eliminar el registro", "ELIMINARs");
+            return false;
+        }
+    }
     public boolean validar(DTO_Paciente paciente) {
         Connection con = getConexion();
         PreparedStatement pst;

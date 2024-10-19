@@ -67,6 +67,7 @@ public class Controlador_6_MP implements ActionListener {
         if (e.getSource().equals(VMP.getBt_eli())) {
             String[] arreglo = {"SI", "NO"};
             int op = JOptionPane.showOptionDialog(null, "¿ESTA SEGURO QUE DESEA ELIMINAR EL PACIENTE?", "ELIMINAR", 0, JOptionPane.QUESTION_MESSAGE, null, arreglo, "NO");
+            System.out.println(dtoP.getDocumento()+"aaaaaaaaaaaaaaaaaaaa");
             if (arreglo[op].equals("SI")) {
                 if (daoP.eliminar(dtoP)) {
                     mensaje("PACINETE ELIMINADO", "ELIMINAR");
